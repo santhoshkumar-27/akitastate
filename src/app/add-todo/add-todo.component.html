@@ -1,1 +1,22 @@
-<p>add-todo works!</p>
+<div class="container">
+    <div class="text-center">
+        <h2 class="display-3">
+            Add Todo
+        </h2>
+    </div>
+    <mat-card>
+        <form class="d-flex flex-column" [formGroup]="todoForm" (ngSubmit)="todoForm.valid && addTodo()">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input type="text" matInput formControlName="title" placeholder="Title">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>description</mat-label>
+                <!-- <input type="text" matInput placeholder="description"> -->
+                <textarea matInput placeholder="description" formControlName="description" rows="3"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="mb-2" type="submit">Add Todo</button>
+            <button mat-raised-button color="accent" routerLink="/"type="button">cancel</button>
+        </form>
+    </mat-card>
+</div>

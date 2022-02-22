@@ -2,14 +2,14 @@ import { Injectable } from "@angular/core";
 import { Store, StoreConfig } from "@datorama/akita";
 import { todoI } from "../shared/todo.modal";
 
-export interface TodaStateI {
+export interface TodoStateI {
     todos: todoI[];
     isLoaded: boolean;
 }
 
-export const initialState = () => {
+export const initialState = (): TodoStateI => {
     return {
-        todo : [],
+        todos : [],
         isLoaded: false
     }
 }
@@ -20,7 +20,7 @@ export const initialState = () => {
 @StoreConfig({
     name : 'todo',
 })
-export class TodoState extends Store<TodaStateI> {
+export class TodoStore extends Store<TodoStateI> {
     constructor() {
         super(initialState())
     }
