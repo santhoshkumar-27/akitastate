@@ -1,14 +1,3 @@
 {
-  "todoList": [
-    {
-      "title": "morning routing",
-      "description": "break fast",
-      "id": 1
-    },
-    {
-      "title": "hari02@yopmail.com",
-      "description": "adsfadfadf",
-      "id": 2
-    }
-  ]
+  "todoList": []
 }

@@ -5,13 +5,14 @@
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <ng-container *ngIf="!isLoading">
         <mat-card *ngFor="let todo of todos">
-            <p>
+            <p [ngClass]="{done : todo.status === 'done'}">
                 {{todo.title}}
             </p>
-            <p>
+            <p [ngClass]="{done : todo.status === 'done'}">
                 {{todo.description}}
             </p>
-            <button mat-stroked-button color="accent">Mark as complete</button>
+            <button mat-stroked-button *ngIf="todo.status === 'open'" color="accent" (click)="markAsCompleted(todo.id, todo)">Mark as complete</button>
+            <button mat-stroked-button *ngIf="todo.status === 'done'" color="accent" (click)="deleteTodo(todo.id)">Delete</button>
         </mat-card>
     </ng-container>
 </div>

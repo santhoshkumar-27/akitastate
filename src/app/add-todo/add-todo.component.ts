@@ -30,7 +30,6 @@ export class AddTodoComponent implements OnInit {
     }) 
   }
   addTodo() {
-    // console.log('this is ', this.todoForm.value);
     this.todoStore.setLoading(true)
     this.todoService
     .addTodo(this.todoForm.controls['title'].value, this.todoForm.controls['description'].value)

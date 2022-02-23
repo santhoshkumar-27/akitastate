@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { filter, switchMap, take } from 'rxjs';
-import { todoI } from '../shared/todo.modal';
+import { todoI, TodoStatusE } from '../shared/todo.modal';
 import { TodoServices } from '../shared/todo.service';
 import { TodoStore } from '../state/state';
 import { TodoQuery } from '../state/todo.query';
@@ -44,18 +44,50 @@ export class HomeComponent implements OnInit {
     error : (err) => {
       console.log('error', err)
       this.todoStore.setLoading(false);
-    }, 
-    complete: () => {
-      console.log('complete')
     }});
-    // this.todoService.getTodo().subscribe({
-    //   next: (res) => {
-    //     this.todos = res
-    //   }
-    // })
   }
 
   addTodo() {
     this.router.navigateByUrl('/add-todo')
+  }
+
+  markAsCompleted(id:number, todo: todoI){
+    const payload = {
+      ...todo,
+      status: TodoStatusE.DONE
+    }
+    this.todoService.updateTodo(id, payload).subscribe({
+      next: (res) => {
+        this.todoStore.update( state => {
+          const todos = [...state.todos]
+          const index = todos.findIndex( t => t.id === id)
+          todos[index] = {
+            ...todos[index],
+            status : TodoStatusE.DONE
+          }
+
+          return {
+            ...state,
+            todos
+          }
+        })
+      }, 
+      error: (err) => {
+        console.log('this is error', err);
+      } 
+    })
+  };
+  deleteTodo(id: number){
+    this.todoService.deleteTodo(id).subscribe({next: (res) => {
+      this.todoStore.update( state => {
+        return {
+          ...state,
+          todos: state.todos.filter( t => t.id !== id)
+        }
+      })
+    },
+    error: (err) => {
+      console.log('this is error', err);
+    }})
   }
 }
