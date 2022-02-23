@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
     ).subscribe({
       next: (res) => {
       this.todoStore.update( state => {
+        console.log('this is home state', state);
         return {
           todos: res, //this statement update the state management of todostate of todos,
           isLoaded: true
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
     }});
   }
 
-  addTodo() {
+  goToAddTodo() {
     this.router.navigateByUrl('/add-todo')
   }
 

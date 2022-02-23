@@ -1,6 +1,6 @@
 <div class="container my-2">
     <div class="text-center">
-        <button mat-raised-button color="primary" type="button" (click)="addTodo()">Create Todo</button>
+        <button mat-raised-button color="primary" type="button" (click)="goToAddTodo()">Create Todo</button>
     </div>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <ng-container *ngIf="!isLoading">

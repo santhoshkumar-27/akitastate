@@ -7,5 +7,5 @@ export interface todoI {
 
 export enum TodoStatusE {
     OPEN = 'open',
-    DONE= 'done'
+    DONE = 'done'
 }
