@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
             ...todos[index],
             status : TodoStatusE.DONE
           }
-
+          console.log({...state, todos})
           return {
             ...state,
             todos
